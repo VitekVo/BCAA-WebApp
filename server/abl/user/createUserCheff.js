@@ -1,17 +1,17 @@
-//const filePathCheff = path.join(__dirname, "storage", "user", "cheff");
+const userDao = require("../../dao/user-dao.js");
+async function createUserCheff(req, res) {
 
-// function createUserCustomer(req, res) {
+    userData = req.body;
 
-//     let user = req.body;
+    let user = {
+        "id": "",
+        "type": "cheff",
+        "name": userData.name
+    };
 
-//     user.id = crypto.randomBytes(16).toString("hex");
-//     const filePath = path.join(filePathCustomer, `${user.id}.json`);
-//     const fileData = JSON.stringify(user);
-//     fs.writeFileSync(filePath, fileData, "utf8");
+    user = userDao.create(user);
 
-//     return user;
-// }
+    res.json(user);
+}
 
-// module.exports = {
-//     createUserCustomer
-// };
+module.exports = createUserCheff;

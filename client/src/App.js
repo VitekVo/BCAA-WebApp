@@ -1,31 +1,19 @@
-import React, {useEffect, useState} from 'react'
+import "./style.css"
+import { MainsList } from "./MainsList"
+import { MainsItem } from "./MainsItem"
 
 function App() {
-
-  const [backendData, setBackendData] = useState([{}]);
-
-  useEffect(() => {
-    fetch("/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
-
   return (
-    <div>
-
-      {(typeof backendData.users === "undefined") ? (
-        <p>Loading...</p>
-      ): (
-        backendData.users.map((user, i) => (
-          <p key={i}>{user}</p>
-        ))
-      )}
-
-    </div>
+    <body>
+      <div className="menu-list">
+        <div class="" className="menu-header">
+          <h1 style={{border:"1px solid #4CAF50"}} htmlFor="item">Menu</h1>
+        </div>
+        <MainsList>
+        </MainsList>
+        <MainsItem></MainsItem>
+      </div>
+    </body>
   )
 }
 
