@@ -5,7 +5,7 @@ async function createItem(req, res) {
 
     let item = {
         "id": "",
-        "type": itemData.type, //type: main, side, desert, beverage
+        "type": itemData.type, //type: main, side, dessert, beverage
         "name": itemData.name,
         "price": itemData.price
     };

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-function MainsList({addItemToOrder}) {
+function ItemList() {
     const [items, setUsers] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null); 
 
     useEffect(() => {
         fetch('http://localhost:5000/item/list', {
-            method: 'GET'
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer yourTokenHere'
+            }
         })
         .then(response => {
             if (!response.ok) {
@@ -29,18 +33,15 @@ function MainsList({addItemToOrder}) {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="grid-subitem">
+        <div>
             <h1>Mains</h1>
             <ul>
                 {items.filter(item => item.type === "main").map(item => (
-                   <div key={item.id}>
-                   <p>{item.name} {item.price},- Kč</p>
-                   <button className="addButton" onClick={() => addItemToOrder(item)}>Add</button>
-               </div>
+                    <p key={item.id}>{item.name} {item.price},- Kč</p>
                 ))}
             </ul>
         </div>
     );
 }
 
-export default MainsList;
+export default ItemList;

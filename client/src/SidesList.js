@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-function MainsList({addItemToOrder}) {
+export function SidesList({addItemToOrder}) {
     const [items, setUsers] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null); 
@@ -30,9 +30,9 @@ function MainsList({addItemToOrder}) {
 
     return (
         <div className="grid-subitem">
-            <h1>Mains</h1>
+            <h1>Sides</h1>
             <ul>
-                {items.filter(item => item.type === "main").map(item => (
+                {items.filter(item => item.type === "side").map(item => (
                    <div key={item.id}>
                    <p>{item.name} {item.price},- Kč</p>
                    <button className="addButton" onClick={() => addItemToOrder(item)}>Add</button>
@@ -43,4 +43,5 @@ function MainsList({addItemToOrder}) {
     );
 }
 
-export default MainsList;
+export default SidesList;
+
