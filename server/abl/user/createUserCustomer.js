@@ -1,6 +1,6 @@
 const userDao = require("../../dao/user-dao.js");
-async function createUserCustomer(req, res) {
 
+async function createUserCustomer(req, res) {
     userData = req.body;
 
     let user = {

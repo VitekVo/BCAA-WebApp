@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="main">
       <div className="header">
-        Owen's Own
+        <div className="name">Owen's Own</div>
+        <div className="user">Table 2</div>
+        <div className="clearfix"></div>
       </div>
       <div className="grid-container">
         <Content></Content>

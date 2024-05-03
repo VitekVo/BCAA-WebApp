@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 export function SidesList({addItemToOrder}) {
-    const [items, setUsers] = useState([]); 
+    const [items, setItems] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null); 
 
@@ -16,7 +16,7 @@ export function SidesList({addItemToOrder}) {
             return response.json();
         })
         .then(data => {
-            setUsers(data);
+            setItems(data);
             setIsLoading(false); 
         })
         .catch(error => {

@@ -9,8 +9,10 @@ async function createOrder(req, res) {
 
     let order = {
         "id": "",
-        "type": "customer",
-        "name": orderData.name
+        "userID": "Table 1",
+        "status": "pending", // pending, being prepared, served, paid 
+        "name": "",
+        "orderedItems": orderData
     };
 
     order = orderDao.create(order);
