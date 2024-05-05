@@ -1,6 +1,6 @@
 .top-bar {
     padding: 30px;
-    text-align: right;
+    align-items: right;
     background: #c45d5d;
     color: white;
     font-size: 15px;
@@ -21,12 +21,17 @@
     flex-shrink: 0; 
 }
 
+.user {
+    text-align: right;
+}
+
 .footer {
     background-color: #cf5353;
-    padding: 10px;
-    text-align: center;
     color: white;
-    flex-shrink: 0; 
+    padding: 10px;
+    display: flex;
+    justify-content:center; /* Adjusts the spacing between items */
+    align-items: center;
 }
 
 .content {
@@ -51,18 +56,12 @@
 
 }
 
+.item-subitem {
+    font-size: 10px;
+    background-color: rgba(240, 228, 173, 0.8);
+}
+
 .addButton {
      background-color: rgb(58, 156, 58);
      color: rgb(255, 255, 255)
-}
-
-footer {
-    background-color: #cf5353;
-    padding: 10px;
-    text-align: center;
-    color: white;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
 }

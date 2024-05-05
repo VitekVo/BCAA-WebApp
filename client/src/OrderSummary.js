@@ -17,7 +17,6 @@ function OrderSummary( {order, onReset} ) {
         userID: loggedInUser.id,
         orderedItems: order
       }
-      console.log(orderData);
       fetch(url, {
           method: 'POST',
           headers: {
@@ -48,9 +47,9 @@ function OrderSummary( {order, onReset} ) {
         ))}
       </ul>
       {loggedInUser && loggedInUser?.role === "customer" && (
-        <button onClick={handleButtonClick}>Place order</button>
+        <button class="btn btn-light" onClick={handleButtonClick}>Place order</button>
       )}
-      <button onClick={onReset}>Reset order</button>
+      <button class="btn btn-light" onClick={onReset}>Reset order</button>
       <OrderMessage show={showModal} message={modalMessage} onClose={closeModal} />
     </div>
   );

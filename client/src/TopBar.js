@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
+import { useNavigate } from "react-router-dom"
 
-import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -9,28 +9,35 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Icon from "@mdi/react";
 import { mdiSilverwareForkKnife, mdiLogout } from "@mdi/js";
 
-function NavBar() {
+function TopBar() {
   const { userList, loggedInUser, handlerMap } = useContext(UserContext);
-
+  const navigate = useNavigate();
 
   return (
     <Navbar className="topbar" style={componentStyle()}>
-      <Container>
         <Navbar.Brand>
-          <div className="name" style={brandStyle()}>
+          <button class="btn btn-danger" style={brandStyle()} onClick={() => navigate("/")}>
             <Icon path={mdiSilverwareForkKnife} size={1} color={"white"} />
             Owen's Own
-          </div>
+          </button>
         </Navbar.Brand>
+        <Navbar.Brand>
+          <button class="btn btn-warning" style={brandStyle()} onClick={() => navigate("/itemdetail")}>
+            Menu's items
+          </button>
+        </Navbar.Brand>
+        <Navbar.Brand>
+        </Navbar.Brand>
+        <div className="user">
         <Nav>
           <NavDropdown
             title={loggedInUser ? loggedInUser.name : "Sign in"}
             drop={"start"}
-          >
+            >
             {getUserMenuList({ userList, loggedInUser, handlerMap })}
           </NavDropdown>
         </Nav>
-      </Container>
+        </div>
     </Navbar>
   );
 }
@@ -42,7 +49,6 @@ function componentStyle() {
 function brandStyle() {
   return {
     display: "flex",
-    alignItems: "left",
     gap: "8px",
     color: "white",
   };
@@ -71,4 +77,4 @@ function getUserMenuList({ userList, loggedInUser, handlerMap }) {
   return userMenuItemList;
 }
 
-export default NavBar;
+export default TopBar;

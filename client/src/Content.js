@@ -6,7 +6,7 @@ import BeveragesList from './BeveragesList';
 import OrderSummary from './OrderSummary';
 import OrdersList from './OrdersList';
 
-export function Content() {
+function Content() {
     const [order, setOrder] = useState([]);
 
     const addItemToOrder = (item) => {
@@ -56,3 +56,5 @@ export function Content() {
         </div>
     );
 }
+
+export default Content;
