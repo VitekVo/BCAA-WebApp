@@ -1,25 +1,43 @@
-import React, { useState, useContext } from "react";
-import { useOrders } from './OrdersContext';
+import { useState, useContext } from "react";
 import OrderMessage from "./OrderMessage";
 import { UserContext } from './UserContext';
 
 function OrderSummary( {order, onReset} ) {
-  const { loggedInUser } = useContext(UserContext);
-  const [showModal, setShowModal] = useState(false);
-  const [modalMessage, setModalMessage] = useState('');
-  const closeModal = () => {
-      setShowModal(false);
-  };
 
-  const { addOrder } = useOrders();
-  const handleAddOrder = () => {
-    const newOrder = {
-      userID: loggedInUser.id,
-      orderedItems: order
+    const { loggedInUser } = useContext(UserContext);
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
+    const closeModal = () => {
+        setShowModal(false);
     };
-    addOrder(newOrder);
-};
-      
+
+  const handleButtonClick = () => {
+      const url = "http://localhost:5000/order/create";
+      const orderData = {
+        userID: loggedInUser.id,
+        orderedItems: order
+      }
+      console.log(orderData);
+      fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(orderData)
+        })
+        .then(response => response.json())
+        .then(data => {
+          setModalMessage('Your order has been placed');
+          setShowModal(true);
+          onReset();
+          console.log('Success:', data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          setModalMessage('There has been an error sending your order');
+          setShowModal(true);
+        });
+      };
 
   return (
     <div className="grid-subitem">
@@ -30,7 +48,7 @@ function OrderSummary( {order, onReset} ) {
         ))}
       </ul>
       {loggedInUser && loggedInUser?.role === "customer" && (
-        <button onClick={handleAddOrder}>Place order</button>
+        <button onClick={handleButtonClick}>Place order</button>
       )}
       <button onClick={onReset}>Reset order</button>
       <OrderMessage show={showModal} message={modalMessage} onClose={closeModal} />
