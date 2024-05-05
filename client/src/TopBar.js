@@ -16,13 +16,13 @@ function TopBar() {
   return (
     <Navbar className="topbar" style={componentStyle()}>
         <Navbar.Brand>
-          <button class="btn btn-danger" style={brandStyle()} onClick={() => navigate("/")}>
+          <button className="btn btn-danger" style={brandStyle()} onClick={() => navigate("/")}>
             <Icon path={mdiSilverwareForkKnife} size={1} color={"white"} />
             Owen's Own
           </button>
         </Navbar.Brand>
         <Navbar.Brand>
-          <button class="btn btn-warning" style={brandStyle()} onClick={() => navigate("/itemdetail")}>
+          <button className="btn btn-warning" style={brandStyle()} onClick={() => navigate("/itemdetail")}>
             Menu's items
           </button>
         </Navbar.Brand>

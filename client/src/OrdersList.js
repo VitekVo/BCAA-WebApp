@@ -78,13 +78,13 @@ function OrdersList() {
                     </li>
                 ))}
                 </ul>
-                <select class="btn btn-light dropdown-toggle" value={order.status} onChange={(e) => handleChangeStatus(order.id, e.target.value)}>
+                <select className="btn btn-light dropdown-toggle" value={order.status} onChange={(e) => handleChangeStatus(order.id, e.target.value)}>
                     <option value="placed">Placed</option>
                     <option value="accepted">Accepted</option>
                     <option value="completed">Completed</option>
                     <option value="paid">Paid</option>
                 </select>
-                <button class="btn btn-light" onClick={() => updateOrderStatus(order)} disabled={isLoading}>
+                <button className="btn btn-light" onClick={() => updateOrderStatus(order)} disabled={isLoading}>
                     Confirm Update
                 </button>
             </div>

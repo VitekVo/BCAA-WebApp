@@ -6,7 +6,8 @@ async function createUserEmployee(req, res) {
     let user = {
         "id": "",
         "role": "employee",
-        "name": userData.name
+        "name": userData.name,
+        "job": userData.job
     };
 
     user = userDao.create(user);

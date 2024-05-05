@@ -47,6 +47,21 @@
     grid-template-rows: 50% 50%;
 }
 
+.item-detail {
+    flex: 1;
+    overflow-y: auto;
+    background-color: rgba(230, 196, 124, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 5px;
+    color: black;
+    font-size: large;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+}
+
+
 .grid-subitem {
     background-color: rgba(240, 228, 173, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
@@ -54,11 +69,6 @@
     font-size: 15px;
     text-align: left;
 
-}
-
-.item-subitem {
-    font-size: 10px;
-    background-color: rgba(240, 228, 173, 0.8);
 }
 
 .addButton {

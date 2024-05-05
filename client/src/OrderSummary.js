@@ -47,9 +47,9 @@ function OrderSummary( {order, onReset} ) {
         ))}
       </ul>
       {loggedInUser && loggedInUser?.role === "customer" && (
-        <button class="btn btn-light" onClick={handleButtonClick}>Place order</button>
+        <button className="btn btn-light" onClick={handleButtonClick}>Place order</button>
       )}
-      <button class="btn btn-light" onClick={onReset}>Reset order</button>
+      <button className="btn btn-light" onClick={onReset}>Reset order</button>
       <OrderMessage show={showModal} message={modalMessage} onClose={closeModal} />
     </div>
   );

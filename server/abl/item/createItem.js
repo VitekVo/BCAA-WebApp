@@ -7,7 +7,9 @@ async function createItem(req, res) {
         "id": "",
         "type": itemData.type, //type: main, side, dessert, beverage
         "name": itemData.name,
-        "price": itemData.price
+        "price": itemData.price,
+        "allergens": itemData.allergens,
+        "country": itemData.country
     };
 
     item = itemDao.create(item);

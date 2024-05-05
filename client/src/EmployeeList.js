@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-function ItemList() {
-    const [items, setItems] = useState([]); 
+function EmployeeList() {
+    const [users, setUsers] = useState([]); 
 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null); 
 
     useEffect(() => {
-        fetch('http://localhost:5000/item/list', {
+        fetch('http://localhost:5000/user/list', {
             method: 'GET'
         })
         .then(response => {
@@ -17,7 +17,7 @@ function ItemList() {
             return response.json();
         })
         .then(data => {
-            setItems(data);
+            setUsers(data);
             setIsLoading(false); 
         })
         .catch(error => {
@@ -32,11 +32,11 @@ function ItemList() {
     return (
         <div className="item-subitem">
             <div>
-                <h2>All items</h2>
+                <h1>Our Employees</h1>
                 <ul>
-                    {items.map(item => (
-                    <div key={item.id}>
-                        <p>{item.name} - allergens: {item.allergens} - country of origin: {item.country} </p>
+                    {users.filter(user => user.role === "employee").map(user => (
+                    <div key={user.id}>
+                        <p>{user.name} - {user.job}</p>
                     </div>
                     ))}
                 </ul>
@@ -45,4 +45,4 @@ function ItemList() {
     );
 }
 
-export default ItemList;
+export default EmployeeList;
