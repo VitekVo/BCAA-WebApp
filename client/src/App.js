@@ -1,21 +1,20 @@
-import "./style.css"
-import { Content } from "./Content"
+import "./style.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import TopBar from "./TopBar";
+import { Content } from "./Content";
+import Footer from "./Footer"
+import UserProvider from "./UserProvider";
+
 
 function App() {
 
   return (
-    <div className="main">
-      <div className="header">
-        <div className="name">Owen's Own</div>
-        <div className="user">Table 2</div>
-        <div className="clearfix"></div>
-      </div>
-      <div className="grid-container">
+    <div className="app-container">
+    <UserProvider>
+      <TopBar />
         <Content></Content>
-      </div>
-      <footer>
-        VitekVo TM
-      </footer>
+      <Footer />
+  </UserProvider>
   </div>
   )
 }

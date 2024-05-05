@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from './UserContext';
 
 function OrdersList() {
     const [orders, setOrders] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { loggedInUser } = useContext(UserContext);
 
     useEffect(() => {
         fetch('http://localhost:5000/order/list', {
@@ -62,11 +64,13 @@ function OrdersList() {
         });
       };
 
-    return (
+    if (loggedInUser?.role === "employee") {
+      return (
         <div className="grid-subitem">
-          {orders.filter(order => order.userID === "Table 2" && order.status !== "paid").map(order => (
+          <h2>Order status:</h2>
+          {orders.filter(order => order.status !== "paid").map(order => (
             <div key={order.id}>
-                <h2>Order status: {order.status}</h2>
+                {order.status}
                 <ul>
                 {order.orderedItems.map(item => (
                     <li key={item.id}>
@@ -76,7 +80,7 @@ function OrdersList() {
                 </ul>
                 <select value={order.status} onChange={(e) => handleChangeStatus(order.id, e.target.value)}>
                     <option value="placed">Placed</option>
-                    <option value="being processed">Being processed</option>
+                    <option value="accepted">Accepted</option>
                     <option value="completed">Completed</option>
                     <option value="paid">Paid</option>
                 </select>
@@ -87,6 +91,35 @@ function OrdersList() {
           ))}
         </div>
       );
+    }
+    else if (loggedInUser?.role === "customer") {
+      return (
+        <div className="grid-subitem">
+          <h2>Order status:</h2>
+          {orders.filter(order => order.userID === loggedInUser?.id && order.status !== "paid").map(order => (
+            <div key={order.id}>
+                {order.status}
+                <ul>
+                {order.orderedItems.map(item => (
+                    <li key={item.id}>
+                    {item.name} - {item.quantity} x {item.price},- Kč
+                    </li>
+                ))}
+                </ul>
+                
+            </div>
+          ))}
+        </div>
+      );
+      
+    }
+    else {
+      return (
+        <div className="grid-subitem">
+          <h2>Order status:</h2>
+        </div>
+      );
+    }
 }
 
 export default OrdersList;

@@ -1,11 +1,11 @@
 const userDao = require("../../dao/user-dao.js");
 
-async function createUserCheff(req, res) {
+async function createUserEmployee(req, res) {
     userData = req.body;
 
     let user = {
         "id": "",
-        "type": "cheff",
+        "role": "employee",
         "name": userData.name
     };
 
@@ -14,4 +14,4 @@ async function createUserCheff(req, res) {
     res.json(user);
 }
 
-module.exports = createUserCheff;
+module.exports = createUserEmployee;

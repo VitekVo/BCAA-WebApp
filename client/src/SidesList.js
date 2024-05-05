@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-export function SidesList({addItemToOrder}) {
+export function SidesList({addItemToOrder, removeItemFromOrder}) {
     const [items, setItems] = useState([]); 
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null); 
@@ -35,7 +35,8 @@ export function SidesList({addItemToOrder}) {
                 {items.filter(item => item.type === "side").map(item => (
                    <div key={item.id}>
                    <p>{item.name} {item.price},- Kč</p>
-                   <button className="addButton" onClick={() => addItemToOrder(item)}>Add</button>
+                   <button className="btn btn-success" onClick={() => addItemToOrder(item)}>Add</button>
+                   <button className="btn btn-danger" onClick={() => removeItemFromOrder(item.id)}>Remove</button>
                </div>
                 ))}
             </ul>

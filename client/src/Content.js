@@ -26,19 +26,32 @@ export function Content() {
         });
     };
 
+    const removeItemFromOrder = (itemId) => {
+        setOrder(currentOrder => currentOrder.map(item => {
+            if (item.id === itemId) {
+                if (item.quantity > 1) {
+                    return {...item, quantity: item.quantity - 1}; // Decrease quantity
+                }
+                return null; // or handle the item with quantity zero in another way
+            }
+            return item;
+        }).filter(item => item !== null)); // Remove any null items
+    };
+    
+
     const resetOrder = () => {
-        setOrder([]); // Reset the order state to an empty array
+        setOrder([]);
     };
 
 
 
     return (
-        <div className="grid-item">
-            <MainsList addItemToOrder={addItemToOrder} />
-            <SidesList addItemToOrder={addItemToOrder} />
-            <OrderSummary order={order} onReset = {resetOrder}/>
-            <DessertsList addItemToOrder={addItemToOrder} />
-            <BeveragesList addItemToOrder={addItemToOrder} />
+        <div className="content">
+            <MainsList addItemToOrder={addItemToOrder} removeItemFromOrder={removeItemFromOrder} />
+            <SidesList addItemToOrder={addItemToOrder}  removeItemFromOrder={removeItemFromOrder} />
+            <OrderSummary order={order} onReset = {resetOrder} />
+            <DessertsList addItemToOrder={addItemToOrder} removeItemFromOrder={removeItemFromOrder} />
+            <BeveragesList addItemToOrder={addItemToOrder} removeItemFromOrder={removeItemFromOrder} />
             <OrdersList/>
         </div>
     );

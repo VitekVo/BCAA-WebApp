@@ -9,10 +9,10 @@ async function createOrder(req, res) {
 
     let order = {
         "id": "",
-        "userID": "Table 1",
-        "status": "pending", // pending, being prepared, served, paid 
+        "userID": orderData.userID,
+        "status": "placed", // starting status is always placed  
         "name": "",
-        "orderedItems": orderData
+        "orderedItems": orderData.orderedItems
     };
 
     order = orderDao.create(order);

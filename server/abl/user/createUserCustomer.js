@@ -5,7 +5,7 @@ async function createUserCustomer(req, res) {
 
     let user = {
         "id": "",
-        "type": "customer",
+        "role": "customer",
         "name": userData.name
     };
 

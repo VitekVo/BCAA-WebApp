@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import OrderMessage from "./OrderMessage";
+import { UserContext } from './UserContext';
 
 function OrderSummary( {order, onReset} ) {
 
+    const { loggedInUser } = useContext(UserContext);
     const [showModal, setShowModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const closeModal = () => {
@@ -11,12 +13,17 @@ function OrderSummary( {order, onReset} ) {
 
   const handleButtonClick = () => {
       const url = "http://localhost:5000/order/create";
+      const orderData = {
+        userID: loggedInUser.id,
+        orderedItems: order
+      }
+      console.log(orderData);
       fetch(url, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(order)
+          body: JSON.stringify(orderData)
         })
         .then(response => response.json())
         .then(data => {
@@ -40,7 +47,10 @@ function OrderSummary( {order, onReset} ) {
           <li key={index}>{item.name} - {item.quantity} x {item.price},- Kč</li>
         ))}
       </ul>
-      <button onClick={handleButtonClick}>Place order</button>
+      {loggedInUser && loggedInUser?.role === "customer" && (
+        <button onClick={handleButtonClick}>Place order</button>
+      )}
+      <button onClick={onReset}>Reset order</button>
       <OrderMessage show={showModal} message={modalMessage} onClose={closeModal} />
     </div>
   );

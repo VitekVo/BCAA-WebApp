@@ -12,6 +12,25 @@ function create(user) {
     return user;
 }
 
+function list() {
+    const files = fs.readdirSync(userFolderPath);
+    const userList = files.map((file) => {
+        const fileData = fs.readFileSync(path.join(userFolderPath, file), "utf8");
+        return JSON.parse(fileData);
+    });
+    
+    return userList;
+}
+
+function get(userID) {
+    const filePath = path.join(userFolderPath, `${userID}.json`);
+    const fileData = fs.readFileSync(filePath, "utf8");
+    
+    return JSON.parse(fileData);
+}
+
 module.exports = { 
-    create
+    create,
+    list,
+    get
 }
