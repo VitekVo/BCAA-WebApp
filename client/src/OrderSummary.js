@@ -14,7 +14,7 @@ function OrderSummary( {order, onReset} ) {
   const handleButtonClick = () => {
       const url = "http://localhost:5000/order/create";
       const orderData = {
-        userID: loggedInUser.id,
+        userID: loggedInUser.name,
         orderedItems: order
       }
       fetch(url, {
@@ -40,13 +40,13 @@ function OrderSummary( {order, onReset} ) {
 
   return (
     <div className="grid-subitem">
-      <h2>Your Order</h2>
+      <h2>New Order</h2>
       <ul>
         {order.map((item, index) => (
           <li key={index}>{item.name} - {item.quantity} x {item.price},- Kč</li>
         ))}
       </ul>
-      {loggedInUser && loggedInUser?.role === "customer" && (
+      {loggedInUser && loggedInUser?.role === "customer" && order.length !== 0 && (
         <button className="btn btn-light" onClick={handleButtonClick}>Place order</button>
       )}
       <button className="btn btn-light" onClick={onReset}>Reset order</button>

@@ -33,7 +33,7 @@ function DessertsList({addItemToOrder, removeItemFromOrder}) {
             <h1>Desserts</h1>
             <ul>
                 {items.filter(item => item.type === "dessert").map(item => (
-                   <div key={item.id}>
+                   <div key={item.id} className="item-container">
                    <p>{item.name} {item.price},- Kč</p>
                    <button className="btn btn-success" onClick={() => addItemToOrder(item)}>Add</button>
                    <button className="btn btn-danger" onClick={() => removeItemFromOrder(item.id)}>Remove</button>

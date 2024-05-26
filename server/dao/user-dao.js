@@ -29,8 +29,22 @@ function get(userID) {
     return JSON.parse(fileData);
 }
 
+function remove(userID) {
+    try {
+      const filePath = path.join(userFolderPath, `${userID}.json`);
+      fs.unlinkSync(filePath);
+      return {};
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        return {};
+      }
+      throw { code: "failedToRemoveuser", user: error.user };
+    }
+  }
+
 module.exports = { 
     create,
     list,
-    get
+    get,
+    remove
 }

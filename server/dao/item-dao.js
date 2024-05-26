@@ -29,8 +29,23 @@ function get(itemID) {
     return JSON.parse(fileData);
 }
 
+function remove(itemID) {
+    try {
+      const filePath = path.join(itemFolderPath, `${itemID}.json`);
+      fs.unlinkSync(filePath);
+      return {};
+    } catch (error) {
+      if (error.code === "ENOENT") {
+        return {};
+      }
+      throw { code: "failedToRemoveItem", item: error.item };
+    }
+  }
+  
+
 module.exports = { 
     create,
     list,
-    get
+    get,
+    remove
 }

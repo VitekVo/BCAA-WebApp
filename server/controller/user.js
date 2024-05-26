@@ -3,13 +3,12 @@ const router = express.Router();
 
 const listUser = require("../abl/user/listUser");
 const getUser = require("../abl/user/getUser");
-const createUserCustomer = require("../abl/user/createUserCustomer");
-const createUserEmployee = require("../abl/user/createUserEmployee");
-
+const createUser = require("../abl/user/createUser");
+const deleteUser = require("../abl/user/deleteUser");
 
 router.get("/list", listUser);
 router.get("/get", getUser);
-router.post("/create/customer", createUserCustomer);
-router.post("/create/employee", createUserEmployee);
+router.post("/create", createUser);
+router.post("/delete", deleteUser);
 
 module.exports = router;

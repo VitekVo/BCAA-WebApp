@@ -55,7 +55,7 @@ function brandStyle() {
 }
 
 function getUserMenuList({ userList, loggedInUser, handlerMap }) {
-  const userMenuItemList = userList.map((user) => (
+  const userMenuItemList = userList.sort((a, b) => a.role.localeCompare(b.role)).map((user) => (
     <NavDropdown.Item key={user.id} onClick={() => handlerMap.login(user.id)}>
       {user.name}
     </NavDropdown.Item>

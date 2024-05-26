@@ -1,3 +1,8 @@
+html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+
 .top-bar {
     padding: 30px;
     align-items: right;
@@ -30,37 +35,46 @@
     color: white;
     padding: 10px;
     display: flex;
-    justify-content:center; /* Adjusts the spacing between items */
+    justify-content:center; 
     align-items: center;
 }
 
-.content {
-    flex: 1;
-    overflow-y: auto;
+.item-detail {
     background-color: rgba(230, 196, 124, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 5px;
     font-size: 30px;
     text-align: left;
     display: grid;
-    grid-template-columns: 35% 35% 30%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 5px;               
+    height: calc(100vh - 100px);          
+    overflow: hidden; 
 }
 
-.item-detail {
-    flex: 1;
+.item-subitem {
+    background-color: rgba(240, 228, 173, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 15px;
+    text-align: left;
     overflow-y: auto;
+}
+
+.content {
     background-color: rgba(230, 196, 124, 0.8);
     border: 1px solid rgba(0, 0, 0, 0.8);
     padding: 5px;
-    color: black;
-    font-size: large;
+    font-size: 30px;
     text-align: left;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px;               
+    height: calc(100vh - 100px);          
+    overflow: hidden; 
 }
-
 
 .grid-subitem {
     background-color: rgba(240, 228, 173, 0.8);
@@ -68,10 +82,30 @@
     padding: 20px;
     font-size: 15px;
     text-align: left;
-
+    overflow-y: auto;
 }
 
-.addButton {
-     background-color: rgb(58, 156, 58);
-     color: rgb(255, 255, 255)
+.item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .item-container p {
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  @media (max-width: 600px) {
+    .item-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
 }
+
+  .item-container button {
+    margin-left: 0;
+    margin-top: 5px;
+  }
